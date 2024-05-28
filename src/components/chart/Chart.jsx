@@ -15,7 +15,7 @@ const Chart = ({ type, aspect }) => {
     case "order":
       listData = {
         title: "Last 6 Months (Order)",
-        colorArea: "#7b3c08",
+        colorArea: "#FFC0CB",
         id: "total2",
         fill: "url(#total2)",
         data: [
@@ -31,7 +31,7 @@ const Chart = ({ type, aspect }) => {
     case "earning":
       listData = {
         title: "Last 6 Months (Earning)",
-        colorArea: "#211002",
+        colorArea: "#7E354D",
         id: "total1",
         fill: "url(#total1)",
         data: [
