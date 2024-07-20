@@ -58,6 +58,23 @@
       }
     }
   
+    .mydatatable {
+      .datagrid {
+        color: gray;
+        border: none;
+        
+        div{
+          color: gray;
+          background-color: transparent;
+        }
+  
+        .viewButton {
+          color: gray;
+          border: none;
+        }
+      }
+    }
+
     input{
         background-color: transparent;
     }

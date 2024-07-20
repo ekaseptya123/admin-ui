@@ -1,5 +1,5 @@
 import "./sidebar.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
@@ -9,10 +9,26 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import CategoryIcon from '@mui/icons-material/Category';
 import { DarkModeContext } from '../../context/darkModeContext';
 import { useContext } from 'react';
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+import { AuthContext } from "../../context/AuthContext";
 
 
 const Sidebar = () => {
     const {dispatch} = useContext(DarkModeContext);
+    const {dispatch: authDispatch} = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        signOut(auth)
+        .then(() => {
+            authDispatch({ type: "LOGOUT"});
+            navigate("/login");
+        })
+        .catch((error) => {
+            console.error("Logout error: ", error);
+        });
+    };
 
     return (
         <div className="sidebar">
@@ -46,18 +62,19 @@ const Sidebar = () => {
                         <FilterFramesIcon className = "icon" />
                         <span>Orders</span>
                     </li>
-                    <Link to = "/categories"> 
-                        <li>
+                    <Link to="/categories"> 
+                        <li data-testid="categories">
                             <CategoryIcon className = "icon" />
                             <span>Categories</span>
                         </li>
                     </Link>
+
                     <p className="title">USER</p>
                     <li>
                         <FaceIcon className = "icon" />
                         <span>Profile</span>
                     </li>
-                    <li>
+                    <li onClick={handleLogout}>
                         <LogoutIcon className = "icon" />
                         <span>Logout</span>
                     </li>

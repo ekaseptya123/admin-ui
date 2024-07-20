@@ -6,7 +6,7 @@ import MyDatatable from "../../components/mydatatable/MyDatatable";
 
 
 
-const MyList = () => {
+const MyList = ({columns}) => {
   return (
     <div className="mylist">
       <Sidebar />
@@ -15,8 +15,10 @@ const MyList = () => {
         <div className = "widgets">
           <Widget type = "user"/>
           <Widget type = "order"/>
+          <Widget type = "earning"/>
+          
         </div>
-        <MyDatatable />
+        <MyDatatable  columns={columns}/>
       </div>
     </div>
   );
